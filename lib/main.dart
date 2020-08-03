@@ -4,6 +4,8 @@
 
 //import 'dart:js';
 
+import 'dart:js';
+
 import 'package:audioplayers/audio_cache.dart';
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
@@ -20,6 +22,7 @@ void main() {
       '/second': (context) => Local_Play(),
       '/third': (context) => LocalAudio(),
       '/fourth': (context) => VideoPlayerPage(),
+      '/fifth': (context) => MyCustomForm(),
     },
     debugShowCheckedModeBanner: false,
   ));
@@ -31,15 +34,23 @@ class FirstPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("music for everyone"),
-        backgroundColor: Colors.orangeAccent,
+        title: Text("music for everyone. ."),
+        backgroundColor: Colors.tealAccent[700],
       ),
       body: Container(
           alignment: Alignment.center,
           width: double.infinity,
           height: double.infinity,
-          color: Colors.grey[200],
           margin: EdgeInsets.all(20),
+          decoration: BoxDecoration(
+              color: Colors.grey[200],
+              gradient: LinearGradient(
+                  colors: [Colors.blue[50], Colors.tealAccent[700]]),
+              border: Border.all(
+                width: 0.1,
+                color: Colors.grey[200],
+              ),
+              borderRadius: BorderRadius.circular(30)),
           child: Column(
             // to contain both buttons overall
             mainAxisAlignment: MainAxisAlignment.center,
@@ -48,11 +59,13 @@ class FirstPage extends StatelessWidget {
               Container(
                 //to adjust spacing between two buttons
                 width: 200,
-                height: 130,
+                height: 150,
                 margin: EdgeInsets.all(10),
                 alignment: Alignment.center,
+
                 child: RaisedButton(
-                    color: Colors.orangeAccent,
+                    padding: EdgeInsets.all(10),
+                    color: Colors.tealAccent[700],
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -61,22 +74,22 @@ class FirstPage extends StatelessWidget {
                         Icon(Icons.play_arrow),
                         Text(
                           "Browse Online",
-                          style: TextStyle(fontSize: 15),
+                          style: TextStyle(fontSize: 20),
                         ),
                       ],
                     ),
                     onPressed: () {
-                      Navigator.pushNamed(context, '/fourth');
+                      Navigator.pushNamed(context, '/fifth');
                     }),
               ),
               Container(
                 width: 200,
-                height: 130,
+                height: 150,
                 margin: EdgeInsets.all(10),
                 alignment: Alignment.center,
                 child: RaisedButton(
                     padding: EdgeInsets.all(10),
-                    color: Colors.orangeAccent,
+                    color: Colors.tealAccent[700],
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -85,7 +98,7 @@ class FirstPage extends StatelessWidget {
                         Text(
                           "Play Locally",
                           style: TextStyle(
-                            fontSize: 15,
+                            fontSize: 20,
                           ),
                         ),
                       ],
@@ -100,7 +113,6 @@ class FirstPage extends StatelessWidget {
   }
 }
 
-/*
 // Create a Form widget.
 class MyCustomForm extends StatefulWidget {
   @override
@@ -135,34 +147,29 @@ class MyCustomFormState extends State<MyCustomForm> {
               return value;
             },
           ),
-          
-             RaisedButton(
-               Text('Submit'),
-               padding: EdgeInsets.all(5),
-              color: Colors.orangeAccent,
-              onPressed: () {
-                // Validate returns true if the form is valid, or false
-                // otherwise.
-                if (_formKey.currentState.validate()) {
-                  // If the form is valid, display a Snackbar.
-                  Scaffold.of(context)
-                      .showSnackBar(SnackBar(content: Text('Processing Data')));
-                }
-              },
-            ),
-          
           RaisedButton(
-            Icon(Icons.arrow_back),
-            Text('Go to Home'),
+            child: Text('Submit'),
             padding: EdgeInsets.all(5),
-            color: Colors.orangeAccent,
-            onPressed: () => Navigator.popAndPushNamed(context, '/'))
+            color: Colors.tealAccent[700],
+            onPressed: () {
+              // Validate returns true if the form is valid, or false
+              // otherwise.
+              if (_formKey.currentState.validate()) {
+                // If the form is valid, display a Snackbar.
+                Scaffold.of(context)
+                    .showSnackBar(SnackBar(content: Text('Processing Data')));
+              }
+            },
+          ),
+          RaisedButton(Icon(Icons.arrow_back), Text('Go to Home'),
+              padding: EdgeInsets.all(5),
+              color: Colors.tealAccent[700],
+              onPressed: () => Navigator.popAndPushNamed(context, '/'))
         ],
       ),
     );
   }
 }
-*/
 
 class LocalAudio extends StatefulWidget {
   @override
@@ -216,7 +223,7 @@ class _LocalAudioState extends State<LocalAudio> {
   Widget slider() {
     return Slider(
       activeColor: Colors.black,
-      inactiveColor: Colors.orangeAccent,
+      inactiveColor: Colors.tealAccent[700],
       value: _position.inSeconds.toDouble(),
       min: 0.0,
       max: _duration.inSeconds.toDouble(),
@@ -239,17 +246,26 @@ class _LocalAudioState extends State<LocalAudio> {
     return DefaultTabController(
       length: 1,
       child: Scaffold(
-        backgroundColor: Colors.grey,
+        backgroundColor: Colors.grey[200],
         appBar: AppBar(
           elevation: 1.0,
-          backgroundColor: Colors.orangeAccent,
+          backgroundColor: Colors.tealAccent[700],
           title: Text('Local Player'),
         ),
         body: Container(
-          width: 200,
-          height: 130,
-          margin: EdgeInsets.all(10),
+          width: double.infinity,
+          height: double.infinity,
+          margin: EdgeInsets.all(30),
           alignment: Alignment.center,
+          decoration: BoxDecoration(
+              color: Colors.tealAccent[700],
+              gradient: LinearGradient(
+                  colors: [Colors.blue[50], Colors.tealAccent[700]]),
+              border: Border.all(
+                width: 0.1,
+                color: Colors.grey[200],
+              ),
+              borderRadius: BorderRadius.circular(30)),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,

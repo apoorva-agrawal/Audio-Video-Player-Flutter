@@ -6,15 +6,23 @@ class Local_Play extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("music for everyone"),
-        backgroundColor: Colors.orangeAccent,
+        title: Text("music for everyone. ."),
+        backgroundColor: Colors.tealAccent[700],
       ),
       body: Container(
           alignment: Alignment.center,
           width: double.infinity,
           height: double.infinity,
-          color: Colors.grey[200],
           margin: EdgeInsets.all(20),
+          decoration: BoxDecoration(
+              color: Colors.tealAccent[700],
+              gradient: LinearGradient(
+                  colors: [Colors.blue[50], Colors.tealAccent[700]]),
+              border: Border.all(
+                width: 0.1,
+                color: Colors.grey[200],
+              ),
+              borderRadius: BorderRadius.circular(30)),
           child: Column(
             // to contain both buttons overall
             mainAxisAlignment: MainAxisAlignment.center,
@@ -27,7 +35,8 @@ class Local_Play extends StatelessWidget {
                 margin: EdgeInsets.all(10),
                 alignment: Alignment.center,
                 child: RaisedButton(
-                    color: Colors.orangeAccent,
+                    padding: EdgeInsets.all(10),
+                    color: Colors.tealAccent[700],
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -36,7 +45,7 @@ class Local_Play extends StatelessWidget {
                         Icon(Icons.play_arrow),
                         Text(
                           "Audio",
-                          style: TextStyle(fontSize: 15),
+                          style: TextStyle(fontSize: 20),
                         ),
                       ],
                     ),
@@ -51,7 +60,7 @@ class Local_Play extends StatelessWidget {
                 alignment: Alignment.center,
                 child: RaisedButton(
                     padding: EdgeInsets.all(10),
-                    color: Colors.orangeAccent,
+                    color: Colors.tealAccent[700],
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -60,7 +69,7 @@ class Local_Play extends StatelessWidget {
                         Text(
                           "Video",
                           style: TextStyle(
-                            fontSize: 15,
+                            fontSize: 20,
                           ),
                         ),
                       ],
