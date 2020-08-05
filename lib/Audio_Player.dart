@@ -53,8 +53,8 @@ class _LocalAudioState extends State<LocalAudio> {
 
   Widget slider() {
     return Slider(
-      activeColor: Colors.black,
-      inactiveColor: Colors.tealAccent[700],
+      activeColor: Colors.purple[900],
+      inactiveColor: Colors.purple[50],
       value: _position.inSeconds.toDouble(),
       min: 0.0,
       max: _duration.inSeconds.toDouble(),
@@ -80,7 +80,7 @@ class _LocalAudioState extends State<LocalAudio> {
         backgroundColor: Colors.grey[200],
         appBar: AppBar(
           elevation: 1.0,
-          backgroundColor: Colors.tealAccent[700],
+          backgroundColor: Colors.purple[900],
           title: Text('Local Player'),
         ),
         body: Container(
@@ -93,10 +93,10 @@ class _LocalAudioState extends State<LocalAudio> {
             decoration: BoxDecoration(
                 color: Colors.grey[900],
                 //gradient: LinearGradient(
-                //colors: [Colors.blue[50], Colors.tealAccent[700]]),
+                //colors: [Colors.blue[50], Colors.tealAccent[900]]),
                 border: Border.all(
                   width: 2,
-                  color: Colors.tealAccent[400],
+                  color: Colors.purple[900],
                 ),
                 borderRadius: BorderRadius.circular(10)),
             child: Column(
@@ -118,13 +118,16 @@ class _LocalAudioState extends State<LocalAudio> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     RaisedButton(
-                        child: Icon(Icons.play_arrow),
+                        color: Colors.purple[900],
+                        child: Icon(Icons.play_arrow, color: Colors.white),
                         onPressed: () => audioCache.play('La_Vie_En_Rose.mp3')),
                     RaisedButton(
-                        child: Icon(Icons.pause),
+                        color: Colors.purple[900],
+                        child: Icon(Icons.pause, color: Colors.white),
                         onPressed: () => advancePlayer.pause()),
                     RaisedButton(
-                        child: Icon(Icons.stop),
+                        color: Colors.purple[900],
+                        child: Icon(Icons.stop, color: Colors.white),
                         onPressed: () => advancePlayer.stop()),
                   ],
                 ),

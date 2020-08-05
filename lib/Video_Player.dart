@@ -36,13 +36,14 @@ class _VideoPlayState extends State<VideoPlay> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("music for everyone. ."),
-        backgroundColor: Colors.tealAccent[400],
+        title: Text("music for everyone.",
+            style: TextStyle(fontSize: 24, color: Colors.white)),
+        backgroundColor: Colors.purple[900],
       ),
       body: Container(
         height: double.infinity,
         width: double.infinity,
-        color: Colors.black87,
+        color: Colors.grey[900],
         child: Column(
           children: <Widget>[
             _videoController.value.initialized ? _playerWidget() : Container(),
@@ -51,7 +52,7 @@ class _VideoPlayState extends State<VideoPlay> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 RaisedButton(
-                  color: Colors.tealAccent[400],
+                  color: Colors.purple[900],
                   child: Container(
                     height: 50,
                     width: 130,
@@ -60,9 +61,11 @@ class _VideoPlayState extends State<VideoPlay> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
                         _videoController.value.isPlaying
-                            ? Icon(Icons.pause)
-                            : Icon(Icons.play_arrow),
-                        Text('Play/Pause', style: TextStyle(fontSize: 18)),
+                            ? Icon(Icons.pause, color: Colors.white)
+                            : Icon(Icons.play_arrow, color: Colors.white),
+                        Text('Play/Pause',
+                            style:
+                                TextStyle(fontSize: 18, color: Colors.white)),
                       ],
                     ),
                   ),
@@ -77,16 +80,16 @@ class _VideoPlayState extends State<VideoPlay> {
                   height: 10,
                 ),
                 RaisedButton(
-                    color: Colors.tealAccent[400],
+                    color: Colors.purple[900],
                     child: Container(
                       height: 50,
                       width: 130,
                       child: Row(
                         children: <Widget>[
-                          Icon(Icons.arrow_back),
+                          Icon(Icons.arrow_back, color: Colors.white),
                           Text(
                             'Go to Home',
-                            style: TextStyle(fontSize: 18),
+                            style: TextStyle(fontSize: 18, color: Colors.white),
                           ),
                         ],
                       ),

@@ -36,12 +36,12 @@ class _Video_LocalState extends State<Video_Local> {
     return Scaffold(
       appBar: AppBar(
         title: Text("music for everyone. ."),
-        backgroundColor: Colors.tealAccent[400],
+        backgroundColor: Colors.purple[900],
       ),
       body: Container(
         height: double.infinity,
         width: double.infinity,
-        color: Colors.black87,
+        color: Colors.grey[900],
         child: Column(
           children: <Widget>[
             _videoController.value.initialized ? _playerWidget() : Container(),
@@ -50,7 +50,7 @@ class _Video_LocalState extends State<Video_Local> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 RaisedButton(
-                  color: Colors.tealAccent[400],
+                  color: Colors.purple[900],
                   child: Container(
                     height: 50,
                     width: 100,
@@ -59,8 +59,8 @@ class _Video_LocalState extends State<Video_Local> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
                         _videoController.value.isPlaying
-                            ? Icon(Icons.pause)
-                            : Icon(Icons.play_arrow),
+                            ? Icon(Icons.pause, color: Colors.white)
+                            : Icon(Icons.play_arrow, color: Colors.white),
                         Text('Play/Pause'),
                       ],
                     ),
@@ -73,16 +73,16 @@ class _Video_LocalState extends State<Video_Local> {
                   },
                 ),
                 RaisedButton(
-                    color: Colors.tealAccent[400],
+                    color: Colors.purple[900],
                     child: Container(
                       height: 50,
                       width: 100,
                       child: Row(
                         children: <Widget>[
-                          Icon(Icons.arrow_back),
+                          Icon(Icons.arrow_back, color: Colors.white),
                           Text(
                             'Go to Home',
-                            style: TextStyle(color: Colors.tealAccent[400]),
+                            style: TextStyle(color: Colors.purple[900]),
                           ),
                         ],
                       ),
@@ -107,6 +107,8 @@ class _Video_LocalState extends State<Video_Local> {
           child: VideoPlayer(_videoController),
         ),
         Slider(
+            activeColor: Colors.purple[900],
+            inactiveColor: Colors.purple[50],
             value: _playbackTime.toDouble(),
             max: _videoController.value.duration.inSeconds.toDouble(),
             min: 0,

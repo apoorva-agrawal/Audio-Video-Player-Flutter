@@ -7,7 +7,7 @@ class Local_Play extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("music for everyone. ."),
-        backgroundColor: Colors.tealAccent[700],
+        backgroundColor: Colors.purple[900],
       ),
       body: Container(
           color: Colors.black87,
@@ -19,10 +19,10 @@ class Local_Play extends StatelessWidget {
               decoration: BoxDecoration(
                   color: Colors.grey[900],
                   //gradient: LinearGradient(
-                  //colors: [Colors.blue[50], Colors.tealAccent[700]]),
+                  //colors: [Colors.blue[50], Colors.purple[900]]),
                   border: Border.all(
                     width: 2,
-                    color: Colors.tealAccent[400],
+                    color: Colors.purple[900],
                   ),
                   borderRadius: BorderRadius.circular(10)),
               child: Column(
@@ -38,16 +38,17 @@ class Local_Play extends StatelessWidget {
                     alignment: Alignment.center,
                     child: RaisedButton(
                         padding: EdgeInsets.all(10),
-                        color: Colors.tealAccent[700],
+                        color: Colors.purple[900],
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           // to distinguish b/w icon and text within raised button
                           children: <Widget>[
-                            Icon(Icons.play_arrow),
+                            Icon(Icons.play_arrow, color: Colors.white),
                             Text(
                               "Audio",
-                              style: TextStyle(fontSize: 20),
+                              style:
+                                  TextStyle(fontSize: 20, color: Colors.white),
                             ),
                           ],
                         ),
@@ -62,17 +63,16 @@ class Local_Play extends StatelessWidget {
                     alignment: Alignment.center,
                     child: RaisedButton(
                         padding: EdgeInsets.all(10),
-                        color: Colors.tealAccent[700],
+                        color: Colors.purple[900],
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
-                            Icon(Icons.play_arrow),
+                            Icon(Icons.play_arrow, color: Colors.white),
                             Text(
                               "Video",
-                              style: TextStyle(
-                                fontSize: 20,
-                              ),
+                              style:
+                                  TextStyle(fontSize: 20, color: Colors.white),
                             ),
                           ],
                         ),
