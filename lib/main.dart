@@ -4,14 +4,18 @@
 
 //import 'dart:js';
 
-import 'dart:js';
+//import 'dart:js';
 
 import 'package:audioplayers/audio_cache.dart';
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:video_Player_2_8/Video_Player.dart';
 import 'package:video_Player_2_8/local_play.dart';
 import 'package:video_player/video_player.dart';
 import 'video.dart';
+import 'Video_Player.dart';
+import 'Audio_Player.dart';
+import 'local_video.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -21,8 +25,10 @@ void main() {
       '/': (context) => FirstPage(),
       '/second': (context) => Local_Play(),
       '/third': (context) => LocalAudio(),
-      '/fourth': (context) => VideoPlayerPage(),
-      '/fifth': (context) => MyCustomForm(),
+      //'/fourth': (context) => VideoPlayerPage(),
+      '/fourth': (context) => VideoPlay(),
+      '/fifth': (context) => FormScreen(),
+      '/sixth': (context) => VideoPlayerPage(),
     },
     debugShowCheckedModeBanner: false,
   ));
@@ -38,257 +44,148 @@ class FirstPage extends StatelessWidget {
         backgroundColor: Colors.tealAccent[700],
       ),
       body: Container(
-          alignment: Alignment.center,
-          width: double.infinity,
-          height: double.infinity,
-          margin: EdgeInsets.all(20),
-          decoration: BoxDecoration(
-              color: Colors.grey[200],
-              gradient: LinearGradient(
-                  colors: [Colors.blue[50], Colors.tealAccent[700]]),
-              border: Border.all(
-                width: 0.1,
-                color: Colors.grey[200],
-              ),
-              borderRadius: BorderRadius.circular(30)),
-          child: Column(
-            // to contain both buttons overall
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Container(
-                //to adjust spacing between two buttons
-                width: 200,
-                height: 150,
-                margin: EdgeInsets.all(10),
-                alignment: Alignment.center,
-
-                child: RaisedButton(
-                    padding: EdgeInsets.all(10),
-                    color: Colors.tealAccent[700],
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      // to distinguish b/w icon and text within raised button
-                      children: <Widget>[
-                        Icon(Icons.play_arrow),
-                        Text(
-                          "Browse Online",
-                          style: TextStyle(fontSize: 20),
+          color: Colors.black87,
+          child: Container(
+              alignment: Alignment.center,
+              width: double.infinity,
+              height: double.infinity,
+              margin: EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                  color: Colors.grey[900],
+                  //gradient: LinearGradient(
+                  //colors: [Colors.blue[50], Colors.tealAccent[700]]),
+                  border: Border.all(
+                    width: 2,
+                    color: Colors.tealAccent[400],
+                  ),
+                  borderRadius: BorderRadius.circular(10)),
+              child: Column(
+                // to contain both buttons overall
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                    //to adjust spacing between two buttons
+                    width: 200,
+                    height: 150,
+                    margin: EdgeInsets.all(10),
+                    alignment: Alignment.center,
+                    child: RaisedButton(
+                        padding: EdgeInsets.all(10),
+                        color: Colors.tealAccent[700],
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          // to distinguish b/w icon and text within raised button
+                          children: <Widget>[
+                            Icon(Icons.play_arrow),
+                            Text(
+                              "Browse Online",
+                              style: TextStyle(fontSize: 20),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/fifth');
-                    }),
-              ),
-              Container(
-                width: 200,
-                height: 150,
-                margin: EdgeInsets.all(10),
-                alignment: Alignment.center,
-                child: RaisedButton(
-                    padding: EdgeInsets.all(10),
-                    color: Colors.tealAccent[700],
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        Icon(Icons.play_arrow),
-                        Text(
-                          "Play Locally",
-                          style: TextStyle(
-                            fontSize: 20,
-                          ),
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/fifth');
+                        }),
+                  ),
+                  Container(
+                    width: 200,
+                    height: 150,
+                    margin: EdgeInsets.all(10),
+                    alignment: Alignment.center,
+                    child: RaisedButton(
+                        padding: EdgeInsets.all(10),
+                        color: Colors.tealAccent[700],
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Icon(Icons.play_arrow),
+                            Text(
+                              "Play Locally",
+                              style: TextStyle(
+                                fontSize: 20,
+                              ),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/second');
-                    }),
-              )
-            ],
-          )),
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/second');
+                        }),
+                  )
+                ],
+              ))),
     ); // This trailing comma makes auto-formatting nicer for build methods.
   }
 }
 
 // Create a Form widget.
-class MyCustomForm extends StatefulWidget {
+
+class FormScreen extends StatefulWidget {
   @override
-  MyCustomFormState createState() {
-    return MyCustomFormState();
-  }
+  _FormScreenState createState() => _FormScreenState();
 }
 
-// Create a corresponding State class.
-// This class holds data related to the form.
-class MyCustomFormState extends State<MyCustomForm> {
-  // Create a global key that uniquely identifies the Form widget
-  // and allows validation of the form.
-  // Note: This is a GlobalKey<FormState>,
-  // not a GlobalKey<MyCustomFormState>.
-  final _formKey = GlobalKey<FormState>();
+class _FormScreenState extends State<FormScreen> {
+  String _videourl;
 
-  @override
-  Widget build(BuildContext context) {
-    // Build a Form widget using the _formKey created above.
-    return Form(
-      key: _formKey,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          TextFormField(
-            validator: (value) {
-              if (value.isEmpty) {
-                return 'Please enter url';
-              }
-              return value;
-            },
-          ),
-          RaisedButton(
-            child: Text('Submit'),
-            padding: EdgeInsets.all(5),
-            color: Colors.tealAccent[700],
-            onPressed: () {
-              // Validate returns true if the form is valid, or false
-              // otherwise.
-              if (_formKey.currentState.validate()) {
-                // If the form is valid, display a Snackbar.
-                Scaffold.of(context)
-                    .showSnackBar(SnackBar(content: Text('Processing Data')));
-              }
-            },
-          ),
-          RaisedButton(Icon(Icons.arrow_back), Text('Go to Home'),
-              padding: EdgeInsets.all(5),
-              color: Colors.tealAccent[700],
-              onPressed: () => Navigator.popAndPushNamed(context, '/'))
-        ],
-      ),
-    );
-  }
-}
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-class LocalAudio extends StatefulWidget {
-  @override
-  _LocalAudioState createState() => _LocalAudioState();
-}
-
-class _LocalAudioState extends State<LocalAudio> {
-  Duration _duration = Duration();
-  Duration _position = Duration();
-  AudioPlayer advancePlayer;
-  AudioCache audioCache;
-
-  @override
-  void initState() {
-    super.initState();
-    initPlayer();
-  }
-
-  void initPlayer() {
-    advancePlayer = AudioPlayer();
-    audioCache = AudioCache(fixedPlayer: advancePlayer);
-
-    advancePlayer.durationHandler = (d) => setState(() {
-          _duration = d;
-        });
-
-    advancePlayer.positionHandler = (p) => setState(() {
-          _position = p;
-        });
-  }
-
-  String localFilePath;
-  Widget _tab(List<Widget> children) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Container(
-          padding: EdgeInsets.all(16),
-          child: Column(
-              children: children
-                  .map((w) => Container(
-                        child: w,
-                        padding: EdgeInsets.all(6.0),
-                      ))
-                  .toList()),
-        )
-      ],
-    );
-  }
-
-  Widget slider() {
-    return Slider(
-      activeColor: Colors.black,
-      inactiveColor: Colors.tealAccent[700],
-      value: _position.inSeconds.toDouble(),
-      min: 0.0,
-      max: _duration.inSeconds.toDouble(),
-      onChanged: (double value) {
-        setState(() {
-          seekToSecond(value.toInt());
-          value = value;
-        });
+  Widget _buildURL() {
+    return TextFormField(
+      decoration: InputDecoration(
+          labelText: 'enter url of the video',
+          labelStyle: TextStyle(fontSize: 20)),
+      validator: (String value) {
+        if (value.isEmpty) {
+          return 'url is required';
+        }
+        return null;
+      },
+      onSaved: (String value) {
+        _videourl = value;
       },
     );
   }
 
-  void seekToSecond(int second) {
-    Duration newDuration = Duration(seconds: second);
-    advancePlayer.seek(newDuration);
-  }
-
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 1,
-      child: Scaffold(
-        backgroundColor: Colors.grey[200],
-        appBar: AppBar(
-          elevation: 1.0,
-          backgroundColor: Colors.tealAccent[700],
-          title: Text('Local Player'),
-        ),
-        body: Container(
-          width: double.infinity,
-          height: double.infinity,
-          margin: EdgeInsets.all(30),
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-              color: Colors.tealAccent[700],
-              gradient: LinearGradient(
-                  colors: [Colors.blue[50], Colors.tealAccent[700]]),
-              border: Border.all(
-                width: 0.1,
-                color: Colors.grey[200],
-              ),
-              borderRadius: BorderRadius.circular(30)),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              slider(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  RaisedButton(
-                      child: Icon(Icons.play_arrow),
-                      onPressed: () => audioCache.play('La_Vie_En_Rose.mp3')),
-                  RaisedButton(
-                      child: Icon(Icons.pause),
-                      onPressed: () => advancePlayer.pause()),
-                  RaisedButton(
-                      child: Icon(Icons.stop),
-                      onPressed: () => advancePlayer.stop()),
-                ],
-              ),
-            ],
-          ),
-        ),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.tealAccent[300],
+      ),
+      body: Container(
+        margin: EdgeInsets.all(20),
+        child: Form(
+            key: _formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                _buildURL(),
+                SizedBox(height: 100),
+                RaisedButton(
+                  child: Text('Submit'),
+                  onPressed: () {
+                    if (!_formKey.currentState.validate()) {
+                      return;
+                    } else {
+                      _formKey.currentState.save();
+                      print(_videourl);
+                    }
+                  },
+                ),
+                RaisedButton(
+                    padding: EdgeInsets.all(5),
+                    color: Colors.tealAccent[700],
+                    child: Row(children: <Widget>[
+                      Icon(Icons.arrow_back),
+                      Text('Go to Home'),
+                    ]),
+                    onPressed: () => Navigator.popAndPushNamed(context, '/'))
+              ],
+            )),
       ),
     );
   }
